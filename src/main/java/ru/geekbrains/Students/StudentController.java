@@ -35,4 +35,9 @@ public class StudentController {
     public void deleteStudent(@RequestParam long id){
         repository.deleteById(id);
     }
+    @PostMapping("/add")
+    public void addStudent(@RequestParam String name, @RequestParam String groupname){
+        Student student = new Student(name, groupname);
+        repository.addStudent(student);
+    }
 }

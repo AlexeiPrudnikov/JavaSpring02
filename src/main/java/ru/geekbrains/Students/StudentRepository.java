@@ -56,4 +56,9 @@ public class StudentRepository {
         }
         System.out.println(students);
     }
+    public void addStudent(Student student){
+        if (student != null){
+            students.add(student);
+        }
+    }
 }
