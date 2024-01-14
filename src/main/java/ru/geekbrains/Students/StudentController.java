@@ -22,8 +22,17 @@ public class StudentController {
     public Student getStudent(@PathVariable long id){
         return repository.getByID(id);
     }
+
     @GetMapping
-    public List<Student> getUserByName(@RequestParam String name) {
+    public List<Student> getStudentsByName(@RequestParam String name) {
         return repository.getByName(name);
+    }
+    @GetMapping("/group")
+    public List<Student> getStudentsByGroupName(@RequestParam String groupname) {
+        return repository.getStudentsByGroupName(groupname);
+    }
+    @DeleteMapping (value = "/delete")
+    public void deleteStudent(@RequestParam long id){
+        repository.deleteById(id);
     }
 }

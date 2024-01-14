@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 public class StudentRepository {
@@ -40,10 +41,19 @@ public class StudentRepository {
         }
         return result;
     }
-    public Student getStudentsByGroupName(String name) {
-        return students.stream()
-                .filter(it -> Objects.equals(it.getName(), name))
-                .findFirst()
-                .orElse(null);
+    public List<Student> getStudentsByGroupName(String groupName) {
+        List<Student> result = new ArrayList<>();
+        for (Student student : students){
+            if(student.getGroupName().equals(groupName)) {
+                result.add(student);
+            }
+        }
+        return result;
+    }
+    public void deleteById (long id){
+        for (int i = students.size() - 1; i >= 0 ; i--) {
+            if (students.get(i).getId() == id) students.remove(i);
+        }
+        System.out.println(students);
     }
 }
