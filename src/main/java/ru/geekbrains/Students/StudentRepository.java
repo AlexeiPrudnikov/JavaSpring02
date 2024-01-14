@@ -17,7 +17,7 @@ public class StudentRepository {
         students.add(new Student("Sidorov", "Programmers"));
         students.add(new Student("Bulkin", "Maths"));
         students.add(new Student("Radulov", "Sportsmans"));
-        students.add(new Student("Popoov", "Programmers"));
+        students.add(new Student("Popov", "Programmers"));
         students.add(new Student("Leonov", "Maths"));
         students.add(new Student("Begunov", "Sportsmans"));
         students.add(new Student("Knut", "Programmers"));
@@ -28,6 +28,21 @@ public class StudentRepository {
     public Student getByID(long id){
         return students.stream()
                 .filter(it -> Objects.equals(it.getId(), id))
+                .findFirst()
+                .orElse(null);
+    }
+    public List<Student> getByName(String name) {
+        List<Student> result = new ArrayList<>();
+        for (Student student : students){
+            if(student.getName().contains(name)) {
+                result.add(student);
+            }
+        }
+        return result;
+    }
+    public Student getStudentsByGroupName(String name) {
+        return students.stream()
+                .filter(it -> Objects.equals(it.getName(), name))
                 .findFirst()
                 .orElse(null);
     }
